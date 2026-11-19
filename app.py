@@ -46,7 +46,17 @@ h1{color:#ff6fae}
 <div class="caixa">
 <div class="logo"></div>
 <h1 style="margin:5px">Jogo da Forca</h1>
-<p><b>UNAMA</b> | Aluna: Maria Andria Alves do Nascimento<br> Trabalho de Coding</p>
+<div style="font-size:55px; text-align:center; line-height:1.1; margin:10px;">
+{% set erros = 6 - tentativas %}
+{% if erros == 0 %} 🙂 {% endif %}
+{% if erros == 1 %} 😟 {% endif %}
+{% if erros == 2 %} 😟<br>🧍 {% endif %}
+{% if erros == 3 %} 😟<br>🧍<br>🦵 {% endif %}
+{% if erros == 4 %} 😟<br>💪🧍💪<br>🦵 {% endif %}
+{% if erros == 5 %} 😟<br>💪🧍💪<br>🦵🦵 {% endif %}
+{% if erros >= 6 %} 😵<br>💪🧍💪<br>🦵🦵 {% endif %}
+</div>
+<p style="text-align:center;">Erros: {{ erros }} de 6</p>
 <hr>
 <h2 class="palavra">{{ exibida }}</h2>
 <p> Tentativas: <b>{{ tentativas }}</b> | Letras usadas: {{ usadas }}</p>
