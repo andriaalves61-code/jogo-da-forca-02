@@ -46,15 +46,23 @@ h1{color:#ff6fae}
 <div class="caixa">
 <div class="logo"></div>
 <h1 style="margin:5px">Jogo da Forca</h1>
-<div style="font-size:55px; text-align:center; line-height:1.1; margin:10px;">
-{% set erros = 6 - tentativas %}
-{% if erros == 0 %} 🙂 {% endif %}
-{% if erros == 1 %} 😟 {% endif %}
-{% if erros == 2 %} 😟<br>🧍 {% endif %}
-{% if erros == 3 %} 😟<br>🧍<br>🦵 {% endif %}
-{% if erros == 4 %} 😟<br>💪🧍💪<br>🦵 {% endif %}
-{% if erros == 5 %} 😟<br>💪🧍💪<br>🦵🦵 {% endif %}
-{% if erros >= 6 %} 😵<br>💪🧍💪<br>🦵🦵 {% endif %}
+<div style="text-align:center;">
+<svg width="180" height="210" viewBox="0 0 180 210">
+<!-- FORCA -->
+<line x1="10" y1="200" x2="100" y2="200" stroke="#333" stroke-width="5"/>
+<line x1="30" y1="200" x2="30" y2="10" stroke="#333" stroke-width="5"/>
+<line x1="30" y1="10" x2="120" y2="10" stroke="#333" stroke-width="5"/>
+<line x1="120" y1="10" x2="120" y2="40" stroke="#333" stroke-width="3"/>
+<!-- BONEQUINHO PENDURADO -->
+{% if erros >= 1 %}<circle cx="120" cy="55" r="15" fill="none" stroke="#333" stroke-width="3"/>{% endif %}
+{% if erros >= 2 %}<line x1="120" y1="70" x2="120" y2="120" stroke="#333" stroke-width="3"/>{% endif %}
+{% if erros >= 3 %}<line x1="120" y1="85" x2="95" y2="105" stroke="#333" stroke-width="3"/>{% endif %}
+{% if erros >= 4 %}<line x1="120" y1="85" x2="145" y2="105" stroke="#333" stroke-width="3"/>{% endif %}
+{% if erros >= 5 %}<line x1="120" y1="120" x2="100" y2="155" stroke="#333" stroke-width="3"/>{% endif %}
+{% if erros >= 6 %}<line x1="120" y1="120" x2="140" y2="155" stroke="#333" stroke-width="3"/>{% endif %}
+</svg>
+</div>
+<p style="text-align:center;">Erros: {{ erros }} de 6</p>
 </div>
 <p style="text-align:center;">Erros: {{ erros }} de 6</p>
 <hr>
