@@ -46,7 +46,6 @@ h1{color:#ff6fae}
 <div class="caixa">
 <div class="logo"></div>
 <h1 style="margin:5px">Jogo da Forca</h1>
-{% set erros = 6 - tentativas
 <div style="text-align:center;">
 <svg width="180" height="210" viewBox="0 0 180 210">
 <!-- FORCA -->
