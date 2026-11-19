@@ -48,11 +48,18 @@ h1{color:#ff6fae}
 <h1 style="margin:5px">Jogo da Forca</h1>
 <div style="text-align:center;">
 <svg width="180" height="210" viewBox="0 0 180 210">
-<!-- FORCA -->
 <line x1="10" y1="200" x2="100" y2="200" stroke="#333" stroke-width="5"/>
 <line x1="30" y1="200" x2="30" y2="10" stroke="#333" stroke-width="5"/>
 <line x1="30" y1="10" x2="120" y2="10" stroke="#333" stroke-width="5"/>
 <line x1="120" y1="10" x2="120" y2="40" stroke="#333" stroke-width="3"/>
+{% if tentativas == 5 or tentativas == 1 %}<circle cx="120" cy="55" r="15" fill="white" stroke="#333" stroke-width="3"/>{% endif %}
+{% if tentativas == 4 or tentativas == 2 %}<circle cx="120" cy="55" r="15" fill="white" stroke="#333" stroke-width="3"/><line x1="120" y1="70" x2="120" y2="120" stroke="#333" stroke-width="3"/>{% endif %}
+{% if tentativas == 3 or tentativas == 3 %}<circle cx="120" cy="55" r="15" fill="white" stroke="#333" stroke-width="3"/><line x1="120" y1="70" x2="120" y2="120" stroke="#333" stroke-width="3"/><line x1="120" y1="85" x2="95" y2="105" stroke="#333" stroke-width="3"/><line x1="120" y1="85" x2="145" y2="105" stroke="#333" stroke-width="3"/>{% endif %}
+{% if tentativas == 2 or tentativas == 4 %}<circle cx="120" cy="55" r="15" fill="white" stroke="#333" stroke-width="3"/><line x1="120" y1="70" x2="120" y2="120" stroke="#333" stroke-width="3"/><line x1="120" y1="85" x2="95" y2="105" stroke="#333" stroke-width="3"/><line x1="120" y1="85" x2="145" y2="105" stroke="#333" stroke-width="3"/><line x1="120" y1="120" x2="100" y2="155" stroke="#333" stroke-width="3"/>{% endif %}
+{% if tentativas == 1 or tentativas == 5 %}<circle cx="120" cy="55" r="15" fill="white" stroke="#333" stroke-width="3"/><line x1="120" y1="70" x2="120" y2="120" stroke="#333" stroke-width="3"/><line x1="120" y1="85" x2="95" y2="105" stroke="#333" stroke-width="3"/><line x1="120" y1="85" x2="145" y2="105" stroke="#333" stroke-width="3"/><line x1="120" y1="120" x2="100" y2="155" stroke="#333" stroke-width="3"/><line x1="120" y1="120" x2="140" y2="155" stroke="#333" stroke-width="3"/>{% endif %}
+{% if tentativas == 0 or tentativas == 6 %}<circle cx="120" cy="55" r="15" fill="white" stroke="#333" stroke-width="3"/><line x1="120" y1="70" x2="120" y2="120" stroke="#333" stroke-width="3"/><line x1="120" y1="85" x2="95" y2="105" stroke="#333" stroke-width="3"/><line x1="120" y1="85" x2="145" y2="105" stroke="#333" stroke-width="3"/><line x1="120" y1="120" x2="100" y2="155" stroke="#333" stroke-width="3"/><line x1="120" y1="120" x2="140" y2="155" stroke="#333" stroke-width="3"/>{% endif %}
+</svg>
+</div>
 <!-- BONEQUINHO PENDURADO -->
 <hr>
 <h2 class="palavra">{{ exibida }}</h2>
