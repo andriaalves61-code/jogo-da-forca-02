@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, session, redirect, url_for
 import random
 import os
 
-app = Flask(_name_)
+app = Flask(__name__)
 app.secret_key = "wathy22"
 
 palavras_por_categoria = {
