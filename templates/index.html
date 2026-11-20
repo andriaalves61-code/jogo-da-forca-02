@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head><meta charset="UTF-8"><title>Jogo da Forca - UNAMA</title>
+<style>
+  body { background: #ffeef5; font-family: Arial; display:flex; justify-content:center; padding:20px; }
+  .caixa { background:white; padding:25px; border-radius:20px; width:420px; text-align:center; box-shadow:0 0 20px #ffb6d9; }
+  h1 { color:#ff6b9d; }
+  input { width:90%; padding:12px; border:2px solid #ffb6d9; border-radius:10px; text-align:center; font-size:16px; }
+  button { background:#ff6b9d; color:white; border:none; padding:12px 15px; border-radius:12px; font-size:16px; cursor:pointer; margin:3px; }
+  .letra { width:38px; height:38px; }
+  .letra:disabled { background:#ccc; }
+  table { width:100%; border-collapse:collapse; margin-top:10px; }
+  th, td { border:1px solid #ffb6d9; padding:8px; }
+  th { background:#ff6b9d; color:white; }
+</style>
+</head>
+<body>
+{% if not logado %}
+<div class="caixa">
+  <p style="color:#ff6b9d; letter-spacing:3px; font-size:12px;">UNAMA - TRABALHO DE CODING</p>
+  <h1>Jogo da Forca</h1>
+  <p style="color:#888;">Feito por Maria Andria Alves do Nascimento</p>
+  <hr>
+  <form method="POST">
+    <p style="text-align:left; font-weight:bold;">Qual o seu nome?</p>
+    <input name="nome" placeholder="Digite seu nome" required>
+    <p style="text-align:left; font-weight:bold;">Escolha sua cor:</p>
+    <select name="cor" style="padding:10px; border-radius:10px; border:2px solid #ffb6d9;">
+      <option>Rosa</option><option>Lilas</option><option>Azul</option>
+    </select>
+    <br><br>
+    <button style="width:100%; padding:15px;">Entrar no Jogo</button>
+  </form>
+</div>
+{% else %}
+<div class="caixa">
+  <p style="color:#ff6b9d; font-size:12px;">UNAMA - JOGO DA FORCA</p>
+  <h1>Jogo da Forca</h1>
+  <p>Oi, <b>{{ nome }}</b>! Boa sorte! Cor: {{ cor }}</p>
+  <svg width="200" height="220" viewBox="0 0 200 220" style="background:#fff7fa; border-radius:10px;">
+    <line x1="20" y1="210" x2="100" y2="210" stroke="black" stroke-width="3"/>
+    <line x1="60" y1="210" x2="60" y2="20" stroke="black" stroke-width="3"/>
+    <line x1="60" y1="20" x2="140" y2="20" stroke="black" stroke-width="3"/>
+    <line x1="140" y1="20" x2="140" y2="50" stroke="black" stroke-width="3"/>
+    <g stroke="black" stroke-width="3" fill="none">
+      {% if tentativas <= 5 %}<circle cx="140" cy="70" r="20"/>{% endif %}
+      {% if tentativas <= 4 %}<line x1="140" y1="90" x2="140" y2="140"/>{% endif %}
+      {% if tentativas <= 3 %}<line x1="140" y1="100" x2="115" y2="120"/>{% endif %}
+      {% if tentativas <= 2 %}<line x1="140" y1="100" x2="165" y2="120"/>{% endif %}
+      {% if tentativas <= 1 %}<line x1="140" y1="140" x2="115" y2="170"/>{% endif %}
+      {% if tentativas <= 0 %}<line x1="140" y1="140" x2="165" y2="170"/>{% endif %}
+    </g>
+  </svg>
+  <p style="background:#fff3cd; padding:10px; border-radius:10px;"><b>Categoria:</b> {{ categoria }}<br><b>Dica:</b> {{ dica }}</p>
+  <div style="font-size:32px; letter-spacing:8px; font-weight:bold;">{{ exibicao }}</div>
+  <p style="font-weight:bold;">{{ msg }}</p>
+  <p>Tentativas: <b>{{ tentativas }}</b> | Letras usadas: <b>{% if erradas %}{{ erradas|join(', ') }}{% else %}Nenhuma{% endif %}</b></p>
+  {% if not fim %}
+  <form method="POST">
+    {% for letra in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" %}
+      <button class="letra" name="letra" value="{{ letra }}" {% if letra in erradas %}disabled{% endif %}>{{ letra }}</button>
+    {% endfor %}
+  </form>
+  {% endif %}
+  <br>
+  <form method="POST" style="display:inline;"><button name="acao" value="novo">Novo Jogo</button></form>
+  <form method="POST" style="display:inline;"><button name="acao" value="sair" style="background:#888;">Sair</button></form>
+  <h3 style="color:#ff6b9d;">Ranking</h3>
+  <table><tr><th>Jogador</th><th>Resultado</th><th>Palavra</th></tr>
+  {% for r in ranking %}
+    <tr><td>{{ r.nome }}</td><td>{{ r.resultado }}</td><td>{{ r.palavra }}</td></tr>
+  {% endfor %}
+  </table>
+</div>
+{% endif %}
+</body>
+</html>
